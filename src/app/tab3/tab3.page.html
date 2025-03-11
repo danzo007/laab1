@@ -1,17 +1,48 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Tab 3
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
+<app-my-header name="Лабораторна робота №3"></app-my-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 3</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <ion-card color="light">
+    <ion-card-header>
+      <ion-card-title>
+        Завдання 3
+      </ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p>
+        Згенерувати матрицю розміром NxN. Виокремити за допомогою
+кольору усі елементи, які є простими числами.
+      </p>
+      <ion-item>
+        <ion-input 
+        label="Число" 
+        labelPlacement="stacked"
+        type="number"
+        id="a"
+        value="3"
+        #Inputn
+        >
+        </ion-input>
+      </ion-item>
+      
+      <ion-button
+        expand="block"
+        (click)="calculate(Inputn.value)"
+      >
+        Згенерувати матрицю
+      </ion-button>
+      <ion-item>
+        <ion-grid>
+          <ion-row *ngFor="let i of a">
+            <ion-col 
+              *ngFor="let j of i"
+              [ngStyle]="{background: getColor(j)}"
+            >{{ j }}
 
-  <app-explore-container name="Tab 3 page"></app-explore-container>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
 </ion-content>
+

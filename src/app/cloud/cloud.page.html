@@ -1,0 +1,57 @@
+<app-my-header name="Лабораторна робота №2"></app-my-header>
+
+<ion-content [fullscreen]="true">
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>
+         Книги які мають час на здачу
+      </ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list>
+        <ion-card 
+          *ngFor="let book of books.books.filter(isReturnedInTime); index as i"
+        >
+          <ion-card-header>
+            <ion-card-title>{{book.code}}</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-item>
+              <ion-label> date end: {{book.endDate | date: 'short'}} </ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-label> reader: {{book.readerNum}} </ion-label>
+            </ion-item>
+          </ion-card-content>
+        </ion-card>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>
+         Книги які не мають час на здачу
+      </ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list>
+        <ion-card 
+        *ngFor="let book of books.books.filter(isNotReturnedInTime); index as i"
+        >
+          <ion-card-header>
+            <ion-card-title>{{book.code}}</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-item>
+              <ion-label> ddate end: {{book.endDate | date: 'short'}} </ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-label> reader: {{book.readerNum}}  </ion-label>
+            </ion-item>
+          </ion-card-content>
+        </ion-card>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+  <canvas #lineCanvas></canvas>
+</ion-content>
