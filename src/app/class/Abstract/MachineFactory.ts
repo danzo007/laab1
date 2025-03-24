@@ -8,6 +8,5 @@ export class MachineFactory{
         if(name.includes(MachineNameMap['Toaster'])) return new Toaster(name, power, weight, parameter);
         else if(name.includes(MachineNameMap['Blender'])) return new Blender(name, power, weight, parameter);
         else throw new Error('no kitchen machine')
-
     }
 }
