@@ -5,6 +5,7 @@ import { IonContent, IonHeader, IonTitle, IonToolbar, IonCard, IonCardTitle, Ion
 import { MyHeaderComponent } from '../my-header/my-header.component';
 import { KitchenMachine } from '../class/Abstract/KitchenMachine';
 import { MachineFactory } from '../class/Abstract/MachineFactory';
+import { SeriesService } from '../service/series/series.service';
 @Component({
   selector: 'app-abstract-class',
   templateUrl: './abstract-class.page.html',
@@ -18,6 +19,8 @@ export class AbstractClassPage implements OnInit {
   }
   dataUrl = 'https://api.jsonbin.io/v3/b/67cf7b8b8a456b7966737580';
   machines: KitchenMachine[] = [];
+  
+
   data: any = [];
   mostPowerfulMachine: any;
   constructor() { }
@@ -45,6 +48,7 @@ export class AbstractClassPage implements OnInit {
           console.log(this.machines)
           this.mostPowerfulMachine = this.findMostPowerfulMachine(); 
           console.log( this.mostPowerfulMachine);
+          
       })
     }
     
