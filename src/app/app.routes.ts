@@ -16,5 +16,8 @@ export const routes: Routes = [
   {
     path: 'servicepage',
     loadComponent: () => import('./servicepage/servicepage.page').then( m => m.ServicepagePage)
+  },{
+    path: 'travel-page',
+    loadComponent: () => import('./travel-page/travel-page.page').then( m => m.TravelPagePage)
   },
 ];

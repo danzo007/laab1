@@ -1,5 +1,4 @@
 import { Blender } from "./Blender";
-import { KitchenMachine } from "./KitchenMachine";
 describe('Blender test', () => {
     let blender: Blender;
     beforeEach(() => {
