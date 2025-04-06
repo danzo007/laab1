@@ -5,4 +5,5 @@ export interface ITrevel {
     getCountry(): string;
     getDescription(): string;
     getTravelType(): string;
+    getDetails(): string[];
 }

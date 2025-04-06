@@ -20,4 +20,12 @@ export const routes: Routes = [
     path: 'travel-page',
     loadComponent: () => import('./travel-page/travel-page.page').then( m => m.TravelPagePage)
   },
+  {
+    path: 'add-product',
+    loadComponent: () => import('./add-product/add-product.page').then( m => m.AddProductPage)
+  },
+  {
+    path: 'edit-product',
+    loadComponent: () => import('./edit-product/edit-product.page').then( m => m.EditProductPage)
+  },
 ];

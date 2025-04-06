@@ -45,4 +45,7 @@ export abstract class Travel implements ITrevel {
     getTravelType(): string {
         return this.travelType;
     }
+    getDetails(): string[] {
+        return [];
+    }
 }

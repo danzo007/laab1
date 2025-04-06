@@ -16,4 +16,10 @@ export class FlyTicket extends Travel {
     getFlightNumber(): string {
         return this.flightNumber;
     }
+    override getDetails(): string[] {
+        let details = super.getDetails();
+        details.push(`Airline: ${this.airline}`);
+        details.push(`Flight Number: ${this.flightNumber}`);
+        return details;
+    }
 }

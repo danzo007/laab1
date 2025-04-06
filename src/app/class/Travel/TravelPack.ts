@@ -18,4 +18,9 @@ export class TravelPack extends Hotel {
         price *= this.numberOfTravels;
         return price;
     }
+    override getDetails(): string[] {
+        let details = super.getDetails();
+        details.push(`Number of travels: ${this.numberOfTravels}`);
+        return details;
+    }
 }

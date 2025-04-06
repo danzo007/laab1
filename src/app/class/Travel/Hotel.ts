@@ -33,4 +33,10 @@ export class Hotel extends Travel {
         }
         return description;
     }
+    override getDetails(): string[] {
+        let details = super.getDetails();
+        details.push(`Stars: ${this.stars}`);
+        details.push(`Breakfast: ${this.breakfast ? 'Yes' : 'No'}`);
+        return details;
+    }
 }

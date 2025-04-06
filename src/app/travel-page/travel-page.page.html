@@ -1,5 +1,14 @@
 <app-my-header name="Лабораторна робота №6"></app-my-header>
 <ion-content [fullscreen]="true">
+<ion-button (click)="addFormShow()">
+  Add travel
+</ion-button>
+<app-add-product
+  *ngIf="showAddForm"
+  (travelAdd)="addProduct($event)"
+>
+
+</app-add-product>
 <ion-card *ngFor="let travel of travelService.travels; index as i">
   <ion-card-header>
     <ion-card-title>{{ travel.getName() }}</ion-card-title>
@@ -10,9 +19,18 @@
     <ion-item><p>Price: {{ travel.getPrice() }}$</p></ion-item>
     <ion-item><p>Duration: {{ travel.getDayLength() }} days</p></ion-item>
     <ion-item><p>Description: {{ travel.getDescription() }}</p></ion-item>
+    <ion-item *ngFor ="let details of travel.getDetails()">
+      <ion-label>{{details}}</ion-label>
+    </ion-item>
   </ion-card-content>
-  <ion-button>
-    Buy
+  <ion-button (click)="editFormShow(i)">
+    Edit 
   </ion-button>
+
+  <app-edit-product
+  *ngIf="showEditForm && i == editFormNumber"
+  (travelEdit)="editProduct($event, i)"
+  [travel] = "travel">
+  </app-edit-product>
 </ion-card>
 </ion-content>

@@ -1,0 +1,108 @@
+<form [formGroup]="travelFrom" (ngSubmit)="onSubmit()">
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Edit travel</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item>
+        <ion-input
+          label="Name"
+          formControlName="name"
+          labelPlacement="floating"
+          errorText="Name is required"
+          [value]="travel.getName()"
+        >
+        </ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input
+          label="Price"
+          formControlName="price"
+          labelPlacement="floating"
+          errorText="Price must be a number"
+          [value]="travel.getPrice()"
+          type="number"
+        >
+        </ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input
+          label="Country"
+          formControlName="country"
+          labelPlacement="floating"
+          errorText="country is required"
+          [value]="travel.getCountry()"
+        >
+        </ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input
+          label="Duration"
+          formControlName="dayLength"
+          labelPlacement="floating"
+          errorText="Duration must be a number"
+          [value]="travel.getDayLength()"
+        >
+        </ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input
+          label="Description"
+          formControlName="description"
+          labelPlacement="floating"
+          errorText="Description is required"
+          [value]="travel.getDescription()"
+        >
+        </ion-input>
+      </ion-item>
+      <fieldset *ngIf="travel.getTravelType() === types[1] || travel.getTravelType() === types[2]">
+        <ion-item>
+          <ion-input
+            label="Stars"
+            formControlName="stars"
+            labelPlacement="floating"
+            errorText="Stars is required"
+          >
+          </ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input 
+            label="Breakfast"
+            formControlName="breakfast"
+            labelPlacement="floating"
+            >
+          </ion-input>
+        </ion-item>
+        <ion-item *ngIf="travel.getTravelType() === types[2]">
+          <ion-input 
+            label="Number of travelers"
+            formControlName="numberOfTravels"
+            labelPlacement="floating"
+            type="number"
+            >
+          </ion-input>
+        </ion-item>
+      </fieldset>
+      <fieldset *ngIf="travel.getTravelType() === types[0]">
+        <ion-item>
+          <ion-input 
+            label="Airline"
+            formControlName="airline"
+            labelPlacement="floating">
+          </ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input 
+            label="Flight Number"
+            formControlName="flightNumber"
+            labelPlacement="floating">
+          </ion-input>
+        </ion-item>
+
+      </fieldset>
+    </ion-card-content>
+  </ion-card>
+  <ion-button type ="submit" (click)="onSubmit()" color="primary">
+    Edit
+  </ion-button>
+</form>

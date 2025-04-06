@@ -1,0 +1,120 @@
+<form [formGroup]="travelForm" >
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Add travel</ion-card-title>
+    </ion-card-header> 
+    <ion-card-content>
+      <ion-item>
+        <ion-input
+          label="Name"
+          formControlName="name"
+          labelPlacement="floating"
+          errorText="Name is required"
+        >
+        </ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input
+          label="Price"
+          formControlName="price"
+          labelPlacement="floating"
+          errorText="Price must be a number"
+          type="number"
+        >
+        </ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input
+          label="Country"
+          formControlName="country"
+          labelPlacement="floating"
+          errorText="country is required"
+        >
+        </ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input
+          label="Duration"
+          formControlName="dayLength"
+          labelPlacement="floating"
+          errorText="Duration must be a number"
+        >
+        </ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input
+          label="Description"
+          formControlName="description"
+          labelPlacement="floating"
+          errorText="Description is required"
+        >
+        </ion-input>
+      </ion-item>
+      <ion-segment (ionChange)="onTypeChange($event.detail.value)">
+        <ion-segment-button value="Hotel" content-id="Hotel">
+          <ion-label>Hotel</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="FlyTicket" content-id="FlyTicket">
+          <ion-label>Fly Ticket</ion-label>
+        </ion-segment-button>
+      </ion-segment>
+      <ion-segment-view>
+        <ion-segment-content id="Hotel">
+          <ion-checkbox labelPlacement="stacked" alignment="center"
+          (ionChange)="onTravelPackChange($event.detail.checked)"
+          >Travel pack</ion-checkbox>
+          <ion-item>
+            <ion-input 
+              label="Stars"
+              formControlName="stars"
+              labelPlacement="floating">
+              type="number"
+            </ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-input 
+              label="Breakfast"
+              formControlName="breakfast"
+              labelPlacement="floating"
+             
+              >
+            </ion-input>
+          </ion-item>
+          <ion-item *ngIf="currentType === types[2]">
+            <ion-input 
+              label="Number of travelers"
+              formControlName="numberOfTravels"
+              labelPlacement="floating"
+              type="number"
+              >
+            </ion-input>
+          </ion-item>
+        </ion-segment-content>
+        <ion-segment-content id="FlyTicket">
+          <ion-item>
+            <ion-input 
+              label="Airline"
+              formControlName="airline"
+              labelPlacement="floating">
+            </ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-input 
+              label="Flight Number"
+              formControlName="flightNumber"
+              labelPlacement="floating">
+            </ion-input>
+          </ion-item>
+        </ion-segment-content>
+      </ion-segment-view>
+
+    </ion-card-content>
+  </ion-card>
+  <ion-button
+    type="submit"
+    (click)="onSubmit()"
+    [disabled]="travelForm.invalid"
+  >
+    Submit
+  </ion-button>
+</form>

@@ -16,7 +16,7 @@ export class TravelFactory {
             case travelType[2]:
                 return new TravelPack(data.name, data.price, data.dayLength, data.country, data.description, data.stars, data.travelType, data.breakfast, data.numberOfTravels);
             default:
-                throw new Error('Invalid travel type');
+                throw new Error('Invalid travel type gg');
         }
     }
 }
