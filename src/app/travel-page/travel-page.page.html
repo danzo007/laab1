@@ -7,9 +7,16 @@
   *ngIf="showAddForm"
   (travelAdd)="addProduct($event)"
 >
-
 </app-add-product>
-<ion-card *ngFor="let travel of travelService.travels; index as i">
+<ion-item>
+  <ion-button (click)="nextType()">
+    Next Type
+  </ion-button>
+  <ion-label> Current Type </ion-label>
+  <ion-label> {{ type }} </ion-label>
+</ion-item>
+
+<ion-card  *ngFor="let travel of travelService.searchTravel; index as i" >
   <ion-card-header>
     <ion-card-title>{{ travel.getName() }}</ion-card-title>
     <ion-card-subtitle>{{ travel.getTravelType() }}</ion-card-subtitle>
@@ -33,4 +40,5 @@
   [travel] = "travel">
   </app-edit-product>
 </ion-card>
+
 </ion-content>
