@@ -1,10 +1,54 @@
+import { ellipse } from 'ionicons/icons';
 import { Injectable } from '@angular/core';
 import { ITrevel } from 'src/app/class/Travel/ITrevel';
 import { Travel } from 'src/app/class/Travel/Travel';
 import { TravelFactory } from 'src/app/class/Travel/TravelFactory';
 import { TravelType } from 'src/app/class/Travel/TravelType';
 import { ConfigService } from '../config.service';
+import { BehaviorSubject } from 'rxjs';
+import { Database, ref, set, push, update, remove, onValue } from '@angular/fire/database';
+@Injectable({
+  providedIn: 'root'
+})
+export class TravelService {
+  private travelSubject = new BehaviorSubject<ITrevel[]>([]);
+  travels$ = this.travelSubject.asObservable();
+  constructor(private db: Database){}
 
+  fetchTravels(): void {
+    const travelsRef = ref(this.db);
+
+    console.log(travelsRef);
+    onValue(travelsRef, (snapshot) => {
+      const data = snapshot.val();
+      const travels = data ? Object.entries(data).map(([key, value]: [string, any]) => TravelFactory.createTravel({ ...value, id: key })) : [];
+      this.travelSubject.next(travels);
+    });
+  }
+
+  addTravel(travel: ITrevel): void {
+    const travelsRef = ref(this.db);
+    const newTravelRef = push(travelsRef);
+    set(newTravelRef, {
+      ...travel,
+      id: newTravelRef.key,
+      type: travel.getTravelType()
+    });
+  }
+  
+  editTravel(updatedTravel: ITrevel): void {
+    const travelRef = ref(this.db, `${updatedTravel.getID()}`);
+    update(travelRef, updatedTravel);
+  }
+
+  deleteTravel(travelId: string): void {
+    const travelRef = ref(this.db, `travels/${travelId}`);
+    remove(travelRef);
+  }
+
+}
+
+/*
 const api = 'https://api.jsonbin.io/v3/b/67f0840b8960c979a57e7e28'
 @Injectable({
   providedIn: 'root'
@@ -48,3 +92,4 @@ export class TravelService {
   });
 }
 
+*/

@@ -40,6 +40,7 @@ export class AddProductPage implements OnInit {
   onSubmit() {
     if (this.travelForm.valid) {
       const travelData = this.travelForm.value;
+      travelData.travelType = this.currentType;
       const travel = TravelFactory.createTravel(travelData)
       this.travelAdd.emit(travel);
       console.log('Form is valid', travel);

@@ -12,6 +12,7 @@ import { Subscription } from 'rxjs';
 import { travelType } from '../class/Travel/TravelType';
 import { Travel } from '../class/Travel/Travel';
 import { TravelType } from '../class/Travel/TravelType';
+import { ITrevel } from '../class/Travel/ITrevel';
 @Component({
   selector: 'app-travel-page',
   templateUrl: './travel-page.page.html',
@@ -22,14 +23,12 @@ import { TravelType } from '../class/Travel/TravelType';
 export class TravelPagePage implements OnInit {
 
   constructor(public travelService: TravelService) { }
-
+  travels: ITrevel[] = [];
   ngOnInit() {
-    this.travelService.load();
-    const typeSub = this.configService.type$
-    .subscribe(() => {
-      this.type = this.configService.type$.value;
-    });
-    this.subscription.push(typeSub);
+    this.travelService.travels$.subscribe((travels) => {
+      this.travels = travels;
+    })
+    this.travelService.fetchTravels();
   }
   showAddForm = false;
   addFormShow(){
@@ -46,26 +45,10 @@ export class TravelPagePage implements OnInit {
     this.editFormNumber = index;
   }
   editProduct($event: any, index: number){
-    this.travelService.travels[index] = $event;
+    this.travelService.editTravel($event);
     this.showEditForm = false;
   }
-    private configService = new ConfigService();
-    private subscription: Subscription[] = [];
-  
-    type: TravelType = travelType[0];
-    count = 0;
-    loading: any;
-    nextType() {
-      if(this.count < travelType.length - 1) {
-        this.count++;
-      }
-      else {
-        this.count = 0;
-      }
-      this.configService.setType(travelType[this.count]);
-      this.travelService.search(this.configService.type$.value);
-    }
-    ngOnDestroy() {
-      this.subscription.forEach((sub) => sub.unsubscribe());
-    }
+  deleteProduct(index: number){
+    this.travelService.deleteTravel(this.travels[index].getID());
+  }
 }

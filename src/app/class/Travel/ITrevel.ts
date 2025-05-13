@@ -1,4 +1,5 @@
 export interface ITrevel {
+    getID(): string;
     getName(): string;
     getPrice(): number;
     getDayLength(): number;

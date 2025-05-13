@@ -35,6 +35,7 @@ export class EditProductPage implements OnInit {
   ngOnInit() {
     console.log(this.travel);
     this.travelFrom = this.fb.group({
+      id: [this.travel.getID(), [Validators.required]],
       name: [this.travel.getName(), [Validators.required, Validators.minLength(3)]],
       price: [this.travel.getPrice(), [Validators.required, Validators.min(0)]],
       dayLength: [this.travel.getDayLength(), [Validators.required, Validators.min(1)]],

@@ -19,7 +19,6 @@ export class FilterPage implements OnInit {
   private configService = new ConfigService();
   private subscription: Subscription[] = [];
 
-  travelService = new TravelService(this.configService);
   constructor() { }
   type: TravelType = travelType[0];
   count = 0;

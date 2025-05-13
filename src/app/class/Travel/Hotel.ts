@@ -5,8 +5,8 @@ export class Hotel extends Travel {
     private stars: number = 1;
     private breakfast: boolean = false;
 
-    constructor(name: string, price: number, dayLength: number, country: string, description: string, travelType: string, stars: number, breakfast: boolean) {
-        super(name, price, dayLength, country, description, travelType);
+    constructor(id: string, name: string, price: number, dayLength: number, country: string, description: string, travelType: string, stars: number, breakfast: boolean) {
+        super(id, name, price, dayLength, country, description, travelType);
         if (stars < 0 || stars > 5) {
             throw new Error('Stars must be between 0 and 5');
         }

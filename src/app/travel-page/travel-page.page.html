@@ -8,15 +8,8 @@
   (travelAdd)="addProduct($event)"
 >
 </app-add-product>
-<ion-item>
-  <ion-button (click)="nextType()">
-    Next Type
-  </ion-button>
-  <ion-label> Current Type </ion-label>
-  <ion-label> {{ type }} </ion-label>
-</ion-item>
 
-<ion-card  *ngFor="let travel of travelService.searchTravel; index as i" >
+<ion-card  *ngFor="let travel of travels; index as i" >
   <ion-card-header>
     <ion-card-title>{{ travel.getName() }}</ion-card-title>
     <ion-card-subtitle>{{ travel.getTravelType() }}</ion-card-subtitle>
