@@ -55,9 +55,7 @@ export class TravelPagePage implements OnInit {
     type: TravelType = travelType[0];
     count = 0;
     loading: any;
-    showFilter = false;
     nextType() {
-      this.showFilter = true;
       if(this.count < travelType.length - 1) {
         this.count++;
       }
